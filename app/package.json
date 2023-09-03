@@ -1,0 +1,41 @@
+{
+    "name": "sal7ly-backend",
+    "version": "1.0.0",
+    "description": "<!-- TOC -->",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start:dev": "nodemon server.js",
+        "start": "NODE_ENV=production nodemon -L server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sala7ly/sala7ly-backend.git"
+    },
+    "author": "m7moudGadallah",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sala7ly/sala7ly-backend/issues"
+    },
+    "homepage": "https://github.com/sala7ly/sala7ly-backend#readme",
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "mongoose": "^7.5.0",
+        "nodemon": "^3.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.5.1",
+        "colors": "^1.4.0",
+        "eslint": "^8.47.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-prettier": "^8.7.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "morgan": "^1.10.0",
+        "prettier": "^2.8.4"
+    }
+}
