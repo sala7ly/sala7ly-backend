@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/sala7ly/sala7ly-backend#readme",
     "dependencies": {
+        "colors": "^1.4.0",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
         "mongoose": "^7.5.0",
@@ -26,7 +27,6 @@
     },
     "devDependencies": {
         "@types/node": "^20.5.1",
-        "colors": "^1.4.0",
         "eslint": "^8.47.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-prettier": "^8.7.0",
