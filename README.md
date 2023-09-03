@@ -12,7 +12,7 @@
 
 ## Description
 
-Welcome to the backend repository of Sala7ly - your platform for efficient project management and collaboration. This backend is designed to support the core features of the Sala7ly platform, including user management, real-time chat, secure payments, project posting, and more.
+Welcome to the backend repository of Sala7ly - your platform for efficient project management and collaboration. This backend is designed to support the core features of the Sala7ly platform, including user management, real-time chat, secure payments, and more.
 
 ## Technologies Used
 
