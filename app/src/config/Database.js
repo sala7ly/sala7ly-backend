@@ -5,6 +5,14 @@
  */
 class Database {
     /**
+     * The single instance of the Database class.
+     *
+     * @private
+     * @type {Database}
+     */
+    static #instance;
+
+    /**
      * The database URI with the password.
      *
      * @private
@@ -38,16 +46,23 @@ class Database {
             databasePassword: String,
         }
     ) {
-        const { databaseURI, databaseName, databasePassword } = options;
+        // If no instance exists, create and store it
+        if (!this.constructor.#instance) {
+            const { databaseURI, databaseName, databasePassword } = options;
 
-        // set password on uri
-        const DB = databaseURI
-            .replace('<DB>', databaseName)
-            .replace('<password>', databasePassword);
+            // set password on uri
+            const DB = databaseURI
+                .replace('<DB>', databaseName)
+                .replace('<password>', databasePassword);
 
-        this.#DB = DB;
-        this.#mongoose = mongoose;
-        this.databaseName = databaseName;
+            this.#DB = DB;
+            this.#mongoose = mongoose;
+            this.databaseName = databaseName;
+            this.constructor.#instance = this;
+        }
+
+        // Return the singleton instance
+        return this.constructor.#instance;
     }
 
     /**
