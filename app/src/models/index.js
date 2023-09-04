@@ -21,10 +21,14 @@ const Availability = require('./Availability')(mongoose);
 //Creates and exports the Booking model.
 const Booking = require('./Booking')(mongoose, validator);
 
+//Creates and exports the Project model.
+const Project = require('./Project')(mongoose);
+
 module.exports = {
     User,
     ClientProfile,
     CraftsmanProfile,
     Availability,
     Booking,
+    Project,
 };
