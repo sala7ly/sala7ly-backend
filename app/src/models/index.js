@@ -24,6 +24,9 @@ const Booking = require('./Booking')(mongoose, validator);
 //Creates and exports the Project model.
 const Project = require('./Project')(mongoose);
 
+//Creates and exports the Review model.
+const Review = require('./Review')(mongoose);
+
 module.exports = {
     User,
     ClientProfile,
@@ -31,4 +34,5 @@ module.exports = {
     Availability,
     Booking,
     Project,
+    Review,
 };
