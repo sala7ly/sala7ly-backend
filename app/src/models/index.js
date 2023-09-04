@@ -27,6 +27,9 @@ const Project = require('./Project')(mongoose);
 //Creates and exports the Review model.
 const Review = require('./Review')(mongoose);
 
+//Creates and exports the Chat model.
+const Chat = require('./Chat')(mongoose);
+
 module.exports = {
     User,
     ClientProfile,
@@ -35,4 +38,5 @@ module.exports = {
     Booking,
     Project,
     Review,
+    Chat,
 };
