@@ -33,6 +33,9 @@ const Chat = require('./Chat')(mongoose);
 //Creates and exports the Message model.
 const Message = require('./Message')(mongoose);
 
+//Creates and exports the Notification model.
+const Notification = require('./Notification')(mongoose);
+
 module.exports = {
     User,
     ClientProfile,
@@ -43,4 +46,5 @@ module.exports = {
     Review,
     Chat,
     Message,
+    Notification,
 };
