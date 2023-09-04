@@ -15,8 +15,12 @@ const ClientProfile = require('./ClientProfile')(mongoose);
 //Creates and exports the CraftsmanProfile model.
 const CraftsmanProfile = require('./CraftsmanProfile')(mongoose);
 
+//Creates and exports the Availability model.
+const Availability = require('./Availability')(mongoose);
+
 module.exports = {
     User,
     ClientProfile,
     CraftsmanProfile,
+    Availability,
 };
