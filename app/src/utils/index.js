@@ -1,6 +1,7 @@
 const catchAsync = require('./catchAsync');
 const StandardJsonResponse = require('./StandardJsonResponse');
 const AppError = require('./AppError');
+const APIFeatures = require('./APIFeatures');
 
 /**
  * A module that exports utility functions and classes for handling errors and asynchronous operations.
@@ -24,4 +25,10 @@ module.exports = {
      * @type {Class}
      */
     AppError,
+
+    /**
+     * A class for handling advanced filtering, sorting, and pagination of API queries in Express route handlers.
+     * @type {Class}
+     */
+    APIFeatures,
 };
