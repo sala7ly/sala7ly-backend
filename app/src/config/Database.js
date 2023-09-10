@@ -59,6 +59,8 @@ class Database {
             this.#mongoose = mongoose;
             this.databaseName = databaseName;
             this.constructor.#instance = this;
+
+            mongoose.set('strictQuery', false);
         }
 
         // Return the singleton instance
