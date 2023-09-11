@@ -1,8 +1,17 @@
 /**
  * Module representing Mongoose models for the application.
  * @module models
+ * @typedef {import('mongoose').Model} User
+ * @typedef {import('mongoose').Model} ClientProfile
+ * @typedef {import('mongoose').Model} CraftsmanProfile
+ * @typedef {import('mongoose').Model} Availability
+ * @typedef {import('mongoose').Model} Booking
+ * @typedef {import('mongoose').Model} Project
+ * @typedef {import('mongoose').Model} Review
+ * @typedef {import('mongoose').Model} Chat
+ * @typedef {import('mongoose').Model} Message
+ * @typedef {import('mongoose').Model} Notification
  */
-
 const mongoose = require('mongoose');
 const validator = require('validator');
 
