@@ -1,6 +1,6 @@
 // Import dependencies
 const morgan = require('morgan');
-const { json } = require('express');
+const { json, urlencoded } = require('express');
 const cookieParser = require('cookie-parser');
 const { errorController } = require('../controllers');
 
@@ -37,6 +37,7 @@ module.exports = (app) => ({
         preMiddlewares(app, {
             morgan,
             json,
+            urlencoded,
             cookieParser,
         });
     },

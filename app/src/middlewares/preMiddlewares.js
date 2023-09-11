@@ -19,9 +19,9 @@ const { NODE_ENV: MODE } = process.env;
  * const { json } = require('express');
  * const cookieParser = require('cookie-parser');
  * const preMiddlewares = require('./middlewares/preMiddlewares');
- * 
+ *
  * const app = express();
- * 
+ *
  * // Configure pre-middlewares
  * preMiddlewares(app, { morgan, json, cookieParser });
  */
@@ -44,7 +44,8 @@ module.exports = (app, dependencies) => {
     }
 
     // Parse JSON bodies
-    app.use(dependencies.json());
+    app.use(dependencies.json({ limit: '10kb' }));
+    app.use(dependencies.urlencoded({ extended: true, limit: '10kb' }));
 
     // Parse cookies
     app.use(dependencies.cookieParser());
