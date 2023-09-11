@@ -4,9 +4,12 @@ const { json, urlencoded } = require('express');
 const cookieParser = require('cookie-parser');
 const { errorController } = require('../controllers');
 
+const utils = require('../utils');
+
 // Load middlewares
 const preMiddlewares = require('./preMiddlewares');
 const postMiddlewares = require('./postMiddlewares');
+const customMiddlewares = require('./customMiddlewares')({ utils });
 
 /**
  * Middleware Loader
@@ -26,6 +29,11 @@ const postMiddlewares = require('./postMiddlewares');
  *
  * // Load post-middlewares with error controller
  * middlewareLoader(app).post();
+ *
+ * // Access custom middlewares
+ * const { customMiddlewares } = middlewareLoader(app);
+ * app.post('/custom', customMiddlewares.someMiddleware, (req, res) => {
+ *   // Y;
  */
 module.exports = (app) => ({
     /**
@@ -50,4 +58,11 @@ module.exports = (app) => ({
     post() {
         postMiddlewares(app, errorController);
     },
+
+    /**
+     * Custom middlewares for specific use cases.
+     * @type {Object}
+     * @name module:middlewares/index#customMiddlewares
+     */
+    customMiddlewares,
 });
