@@ -1,5 +1,6 @@
 // Load Middlewares
 const passwordUpdateProtectionLoader = require('./passwordUpdateProtection ');
+const authMiddlewareLoader = require('./authMiddleware');
 
 /**
  * Custom Middleware Collection
@@ -26,14 +27,23 @@ const passwordUpdateProtectionLoader = require('./passwordUpdateProtection ');
  * });
  */
 module.exports = (dependencies) => {
-    const { utils } = dependencies;
+    const { utils, services, libraries } = dependencies;
 
     // Create middlewares
     const passwordUpdateProtection = passwordUpdateProtectionLoader({
         AppError: utils.AppError,
     });
 
+    const authMiddleware = authMiddlewareLoader({
+        userService: services.userService,
+        jwt: libraries.jwt,
+        promisify: utils.promisify,
+        AppError: utils.AppError,
+        catchAsync: utils.catchAsync,
+    });
+
     return {
         passwordUpdateProtection,
+        authMiddleware,
     };
 };

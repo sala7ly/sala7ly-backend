@@ -2,14 +2,24 @@
 const morgan = require('morgan');
 const { json, urlencoded } = require('express');
 const cookieParser = require('cookie-parser');
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken');
 const { errorController } = require('../controllers');
+const services = require('../services');
 
 const utils = require('../utils');
 
 // Load middlewares
 const preMiddlewares = require('./preMiddlewares');
 const postMiddlewares = require('./postMiddlewares');
-const customMiddlewares = require('./customMiddlewares')({ utils });
+const customMiddlewares = require('./customMiddlewares')({
+    utils,
+    services,
+    libraries: {
+        promisify,
+        jwt,
+    },
+});
 
 /**
  * Middleware Loader
