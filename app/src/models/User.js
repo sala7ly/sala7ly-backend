@@ -17,7 +17,9 @@
  * @param {*} validator - The validator library for data validation.
  * @returns {import('mongoose').Model} User
  */
-module.exports = (mongoose, validator) => {
+module.exports = (mongoose, libraries) => {
+    const { validator, bcrypt } = libraries;
+
     const userSchema = new mongoose.Schema({
         name: {
             type: String,
@@ -78,6 +80,34 @@ module.exports = (mongoose, validator) => {
             default: Date.now(),
             select: false,
         },
+    });
+
+    // document middelware that hashes password and delete passwordConfirm and set passwordChangedAt if password changed
+    userSchema.pre('save', async function (next) {
+        // only run this funciton when password is modified
+        if (!this.isModified('password')) {
+            return next();
+        }
+
+        // hash password with cost 12
+        this.password = await bcrypt.hash(this.password, 12);
+
+        // remove passwordConfirm field before save document
+        this.passwordConfirm = undefined;
+
+        // if it's not a new document then we will set passwordChangedAt
+        if (!this.isNew) {
+            this.passwordChangedAt = Date.now() - 1000;
+        }
+
+        return next();
+    });
+
+    // remove some fields from doc that retrieved after saving
+    userSchema.post('save', function () {
+        this.password = undefined;
+        this.__v = undefined;
+        this.createdAt = undefined;
     });
 
     return mongoose.model('User', userSchema);

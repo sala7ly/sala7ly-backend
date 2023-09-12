@@ -14,9 +14,10 @@
  */
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 //Creates and exports the User model.
-const User = require('./User')(mongoose, validator);
+const User = require('./User')(mongoose, { validator, bcrypt });
 
 //Creates and exports the ClientProfile model.
 const ClientProfile = require('./ClientProfile')(mongoose);
