@@ -12,6 +12,12 @@ const userController = require('./userController')({
     controller,
 });
 
+// Load auth controller
+const authController = require('./authController')({
+    service: services.authService,
+    utils,
+});
+
 // Load undefined routes handler
 const undefinedRoutesHandler = require('./undefinedRoutesHandler')({
     AppError: utils.AppError,
@@ -42,6 +48,20 @@ module.exports = {
      * @property {Function} deleteUser - A function that deletes a user.
      */
     userController,
+
+    /**
+     * @type {Object}
+     * @property {Function} register - A function to register a new user.
+     * @property {Function} login - A function to log in a user.
+     * @property {Function} forgetPassword - A function to initiate password reset.
+     * @property {Function} resetPassword - A function to reset a user's password.
+     * @property {Function} updatePassword - A function to update a user's password.
+     * @property {Function} getMe - A function to retrieve authenticated user data.
+     * @property {Function} updateMe - A function to update authenticated user data.
+     * @property {Function} logout - A function to log out the authenticated user.
+     */
+    authController,
+
     errorController: {
         undefinedRoutesHandler,
         globalErrorHandler,
