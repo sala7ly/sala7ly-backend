@@ -85,7 +85,7 @@ module.exports = (dependencies) => {
             );
         }
 
-        const user = await userService.getUserById(decoded.id);
+        const user = await userService.getOneById(decoded.id, {});
 
         // Grant Access to protected route
         req.user = user;

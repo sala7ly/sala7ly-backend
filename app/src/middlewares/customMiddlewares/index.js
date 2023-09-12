@@ -37,7 +37,7 @@ module.exports = (dependencies) => {
     const authMiddleware = authMiddlewareLoader({
         userService: services.userService,
         jwt: libraries.jwt,
-        promisify: utils.promisify,
+        promisify: libraries.promisify,
         AppError: utils.AppError,
         catchAsync: utils.catchAsync,
     });
