@@ -130,10 +130,14 @@ module.exports = ({ service, utils }) => {
         try {
             // TODO: call sendEmail function
             console.log(resetToken);
+
+            // WARN: Remove resetToken from payload in production
+            const payload =
+                process.env.NODE_ENV === 'development' ? { resetToken } : null;
             // Send response to client
             return new StandardJsonResponse(res, 200)
                 .setMainContent(true, 'Reset token sent to email')
-                .setSuccessPayload(null)
+                .setSuccessPayload(payload)
                 .send();
         } catch (err) {
             // Rollback password reset using service
