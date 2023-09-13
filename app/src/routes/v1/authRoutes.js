@@ -24,7 +24,7 @@ module.exports = (dependencies) => {
     router.route('/forgot_password').post(authController.forgetPassword);
     router
         .route('/reset_password/:resetToken')
-        .put(authController.resetPassword);
+        .post(authController.resetPassword);
 
     // Protect routes with authentication middleware
     router.use(middlewares.authMiddleware.protect);
