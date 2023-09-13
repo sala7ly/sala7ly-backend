@@ -4,6 +4,7 @@ const { json, urlencoded } = require('express');
 const cookieParser = require('cookie-parser');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const { errorController } = require('../controllers');
 const services = require('../services');
 
@@ -57,6 +58,7 @@ module.exports = (app) => ({
             json,
             urlencoded,
             cookieParser,
+            cors,
         });
     },
 

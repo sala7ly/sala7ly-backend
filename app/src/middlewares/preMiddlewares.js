@@ -49,4 +49,7 @@ module.exports = (app, dependencies) => {
 
     // Parse cookies
     app.use(dependencies.cookieParser());
+
+    // enable CORS
+    app.use(dependencies.cors());
 };
