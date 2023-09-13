@@ -162,7 +162,7 @@ module.exports = ({ service, utils }) => {
      */
     const resetPassword = catchAsync(async (req, res, next) => {
         // Get reset token from params
-        const { restToken } = req.params;
+        const { resetToken } = req.params;
         const { password, passwordConfirm } = req.body;
 
         if (!password || !passwordConfirm) {
@@ -175,11 +175,20 @@ module.exports = ({ service, utils }) => {
         }
 
         // Reset Password using service
-        const token = await service.resetPassword(restToken);
+        const token = await service.resetPassword(
+            resetToken,
+            password,
+            passwordConfirm
+        );
+
+        // JWT Token expires in 90 days
+        const expiresIn = new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        );
 
         // Send response to client
         return new StandardJsonResponse(res, 200)
-            .attachTokenCookie(token, process.env.JWT_EXPIRES_IN)
+            .attachTokenCookie(token, expiresIn, {})
             .setMainContent(true, 'Password reset successfully')
             .setSuccessPayload({
                 token,
@@ -210,6 +219,11 @@ module.exports = ({ service, utils }) => {
             );
         }
 
+        // JWT Token expires in 90 days
+        const expiresIn = new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        );
+
         // Update Password using service
         const token = await service.updatePassword(
             req.user.id,
@@ -219,7 +233,7 @@ module.exports = ({ service, utils }) => {
 
         // Send response to client
         return new StandardJsonResponse(res, 200)
-            .attachTokenCookie(token, process.env.JWT_EXPIRES_IN)
+            .attachTokenCookie(token, expiresIn, {})
             .setMainContent(true, 'Password updated successfully')
             .setSuccessPayload({
                 token,
