@@ -153,7 +153,7 @@ module.exports = ({ model, utils, libraries }) => {
 
         // If there is no user with the given email, throw an error
         if (!user) {
-            return new AppError('There is no user with this email', 404);
+            throw new AppError('There is no user with this email', 404);
         }
 
         // Generate a random reset token
@@ -247,23 +247,23 @@ module.exports = ({ model, utils, libraries }) => {
     const resetPassword = async (resetToken, password, passwordConfirm) => {
         // Hash the reset token
         const hashedToken = crypto
-            .create('sha256')
+            .createHash('sha256')
             .update(resetToken)
             .digest('hex');
 
         // Get user based on hashed token and check if token has not expired
-        const user = await model.fineOne({
+        const user = await model.findOne({
             passwordResetToken: hashedToken,
             passwordResetExpires: { $gt: Date.now() },
         });
 
         // If no user, throw an error
         if (!user) {
-            return new AppError('Token is invalid or has expired', 400);
+            throw new AppError('Token is invalid or has expired', 400);
         }
 
         // Update password and generate a new JWT token
-        const token = await resetPassword(user._id, password, passwordConfirm);
+        const token = await updatePassword(user._id, password, passwordConfirm);
 
         return token;
     };
