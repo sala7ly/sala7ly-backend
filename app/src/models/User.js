@@ -30,6 +30,7 @@ module.exports = (mongoose, libraries) => {
             validate: [validator.isEmail, 'Please provide a valid email'],
             lowercase: true,
             unique: true,
+            required: [true, 'Please provide an email'],
         },
         photo: {
             type: String,
